@@ -1,7 +1,30 @@
 html, body {
   height: 100%;
+  background-color: #f2f2f2;
 }
 
 #map {
   height: 50%;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: 'Gugi';
+  color: #aa3a8c;
+}
+
+#submit-btn {
+  margin-top: 10px;
+}
+
+#form-field1 {
+  margin: 0 0 0 auto;
+}
+
+#form-field2 {
+  margin: 0 auto 0 0
+}
+
+.card {
+  margin-top: 10px;
 }
