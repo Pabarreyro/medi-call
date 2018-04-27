@@ -6,16 +6,17 @@
   "extends": "eslint:recommended",
   "env": {
     "browser": true,
+    "es6": true,
     "jquery": true,
     "node": true,
-    "jasmine": true,
-    "es6": true
+    "jasmine": true
   },
   "rules": {
     "semi": 1,
     "indent": ["warn", 2],
     "no-console": "warn",
     "no-debugger": "warn",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "no-undef": "warn"
   }
 }

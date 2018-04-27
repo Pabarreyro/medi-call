@@ -1,7 +1,7 @@
 {
   "name": "medi-call",
   "version": "1.0.0",
-  "description": "Epicodus JS Project Template",
+  "description": "doctor info api",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode development",
@@ -10,11 +10,11 @@
     "test": "karma start karma.conf.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pablo Barreyro",
   "repository": {
     "type": "git"
   },
-  "license": "MIT",
+  "license": "",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.1.0",
+    "google-maps-api": "^2.0.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3"
   }
