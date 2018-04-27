@@ -2,16 +2,27 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
     <title>MediCall</title>
   </head>
   <body>
     <div id="map"></div>
     <h1 class="text-center">MediCall</h1>
-    <div class="container-fluid">
+    <div class="container">
       <form class="text-center">
-        <input id="search" type="text" placeholder="Enter search keyword">
-        <button type="submit" class="btn btn-danger">Find Jobs</button>
+        <div class="form-row">
+          <div class="form-group col-md-4" id="form-field1">
+            <select class="form-control" id="search-type" required>
+              <option value="" selected disabled>Search by name or condition</option>
+              <option value="keyword">Condition (<em>e.g.</em>, "tootache")</option>
+              <option value="name">Last name (<em>e.g.</em>, "Jones")</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4" id="form-field2">
+            <input class="form-control" id="search" type="text" placeholder="Enter search keyword">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info" id="submit-btn">Find Jobs</button>
       </form>
       <div id="results">
 
