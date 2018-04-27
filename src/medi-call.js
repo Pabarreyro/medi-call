@@ -36,6 +36,10 @@ class MediCall {
       request.send();
     });
   }
+
+  cleanUserInput(input) {
+    return input.trim().replace(/\s/g, '-').toLowerCase();
+  }
 }
 
 export { MediCall };
