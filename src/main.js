@@ -20,48 +20,60 @@ function initMap() {
 }
 
 function plotMarker(lat, long, id){
-  let coord = {Lat: lat, Lng: long}
+  let coords = new maps.LatLng(lat,long);
   let marker = new maps.Marker({
-    position: coord,
+    position: coords,
     map: map,
-    url: id
+    label: id
   });
   markers.push(marker);
   marker.addListener('click', function(){
-    $("#job-results").empty();
-    jobsArray[index].forEach(function(job){
-      window.location.href = this.url;
-    });
+    console.log(this.url);
+    $('html,body').animate({
+        scrollTop: $(this.url).offset().top},
+        'slow');
   });
 }
 
 function parseResponse(json) {
   console.log(json);
   for (let i = 0; i < json.data.length; i++) {
-    let resultId = "#result-" + i.toString();
+    let resultId = (i + 1).toString();
     let listing = json.data[i];
-    let ListingSpecialty = listing.specialty[0];
+    let listingSpecialty = listing.specialties[0];
     let listingPractice = listing.practices[0];
+    let listingPhone = listingPractice.phones[0];
 
-    // $("#results").append(`<div class="card card-body" id="${ resultId }"><div class="row"><div class="col-md-2"><img src="${ listing.profile.image_url }"></div><div class="col-md-10"><h4>${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}</h4><p>${ListingSpecialty.name}</p><p>${listingPractice.name}<span>${listingPractice.accepts_new_patients}</span></p><p>${listingPractice.street}</p></div></div></div>`);
-    //
-    // plotMarker(listingPractice.visit_address.lat, listingPractice.visit_address.lon, resultId);
-    // console.log(listing.profile.image_url);
-    // console.log(listing.profile.first_name);
-    // console.log(listing.profile.last_name);
-    // console.log(listing.profile.title);
-    // listing.specialties.forEach(function(specialty){
-    //   console.log(specialty.name);
-    // });
-    // listing.practices.forEach(function(practice){
-    //   console.log(practice.name);
-    //   console.log(practice.accepts_new_patients);
-    //   console.log([practice.visit_address.street,practice.visit_address.street2,practice.visit_address.city, practice.visit_address.state, practice.visit_address.zip]);
-    //   practice.phones.forEach(function(phone){
-    //     console.log(phone.number);
-    //     console.log(phone.type);
-    //   });
-    // });
+    let newPatients;
+    if (listingPractice.accepts_new_patients === true) {
+      newPatients = "Accepting new patients";
+    } else {
+      newPatients = "Not accepting new patients";
+    }
+
+    let listingLat = listingPractice.visit_address.lat;
+    let listingLong = listingPractice.visit_address.lon;
+    plotMarker(listingLat,listingLong, resultId);
+
+    $("#results").append(`<div class="card card-body">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <img src="${ listing.profile.image_url }">
+                              </div>
+                              <div class="col-md-3">
+                                <h4>${ resultId }. ${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}
+                                </h4>
+                                <p>${listingSpecialty.name}</p>
+                              </div>
+                              <div class="col-md-4">
+                                <h5>${listingPractice.name}</h5>
+                                <p>${ newPatients }</p>
+                                <p>${listingPractice.visit_address.street}, ${listingPractice.visit_address.street2}</p>
+                                <p>${listingPractice.visit_address.city}, ${listingPractice.visit_address.state} ${listingPractice.visit_address.zip}</p>
+                                <p>${listingPhone.number}(${listingPhone.type})</p>
+                            </div>
+                          </div>`
+                        );
   }
 }
 
@@ -71,7 +83,7 @@ $(function() {
     event.preventDefault();
     let newCall = new MediCall();
 
-    let queryPromise = newCall.queryCall("asthma", 1);
+    let queryPromise = newCall.queryCall("asthma", 10);
     // let namePromise = newCall.nameCall("jones");
 
     queryPromise.then(function(response){
