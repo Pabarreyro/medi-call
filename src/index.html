@@ -13,13 +13,21 @@
         <div class="form-row">
           <div class="form-group col-md-4" id="form-field1">
             <select class="form-control" id="search-type" required>
-              <option value="" selected disabled>Search by name or condition</option>
+              <option value="" selected disabled>Search by...</option>
               <option value="keyword">Condition (<em>e.g.</em>, "tootache")</option>
               <option value="name">Last name (<em>e.g.</em>, "Jones")</option>
             </select>
           </div>
           <div class="form-group col-md-4" id="form-field2">
-            <input class="form-control" id="search" type="text" placeholder="Enter search keyword">
+            <input class="form-control" id="search-value" type="text" placeholder="Enter search keyword" required>
+          </div>
+          <div class="form-group col-md-4" id="form-field2">
+            <select class="form-control" id="search-limit" required>
+              <option value="" selected disabled>Limit results too...</option>
+              <option value="10">Top 10</option>
+              <option value="20">Top 20</option>
+              <option value="30">Top 30</option>
+            </select>
           </div>
         </div>
         <button type="submit" class="btn btn-info" id="submit-btn">Find Jobs</button>
