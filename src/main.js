@@ -43,9 +43,9 @@ function parseResponse(json) {
     let ListingSpecialty = listing.specialty[0];
     let listingPractice = listing.practices[0];
 
-    $("#results").append(`<div class="card card-body" id="${ resultId }"><div class="row"><div class="col-md-2"><img src="${ listing.profile.image_url }"></div><div class="col-md-10"><h4>${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}</h4><p>${ListingSpecialty.name}</p><p>${listingPractice.name}<span>${listingPractice.accepts_new_patients}</span></p><p>${listingPractice.street}</p></div></div></div>`);
-
-    plotMarker(listingPractice.visit_address.lat, listingPractice.visit_address.lon, resultId);
+    // $("#results").append(`<div class="card card-body" id="${ resultId }"><div class="row"><div class="col-md-2"><img src="${ listing.profile.image_url }"></div><div class="col-md-10"><h4>${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}</h4><p>${ListingSpecialty.name}</p><p>${listingPractice.name}<span>${listingPractice.accepts_new_patients}</span></p><p>${listingPractice.street}</p></div></div></div>`);
+    //
+    // plotMarker(listingPractice.visit_address.lat, listingPractice.visit_address.lon, resultId);
     // console.log(listing.profile.image_url);
     // console.log(listing.profile.first_name);
     // console.log(listing.profile.last_name);
