@@ -27,12 +27,6 @@ function plotMarker(lat, long, id){
     label: id
   });
   markers.push(marker);
-  marker.addListener('click', function(){
-    console.log(this.url);
-    $('html,body').animate({
-        scrollTop: $(this.url).offset().top},
-        'slow');
-  });
 }
 
 function parseResponse(json) {
