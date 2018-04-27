@@ -72,16 +72,27 @@ function parseResponse(json) {
 }
 
 $(function() {
+  let newCall;
+
   initMap();
   $("form").submit(function(event){
     event.preventDefault();
-    let newCall = new MediCall();
+    newCall = new MediCall();
+    let searchLimit = parseInt($("#search-limit").val());
+    let queryVal = newCall.cleanUserInput($("#search-value").val());
 
-    let queryPromise = newCall.queryCall("asthma", 10);
-    // let namePromise = newCall.nameCall("jones");
+    if ($("#search-type").val() === "keyword") {
+      let keywordPromise = newCall.keywordCall(queryVal);
 
-    queryPromise.then(function(response){
-      parseResponse(response);
-    });
+      keywordPromise.then(function(response){
+        parseResponse(response);
+      });
+    } else {
+      let namePromise = newCall.keywordCall(queryVal);
+
+      namePromise.then(function(response){
+        parseResponse(response);
+      });
+    }
   });
 });
