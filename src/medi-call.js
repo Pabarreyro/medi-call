@@ -1,5 +1,5 @@
 class MediCall {
-  queryCall(query, limit){
+  keywordCall(query, limit){
     let promise;
     return promise = new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
