@@ -62,7 +62,7 @@ function parseResponse(json) {
                               <div class="col-md-4">
                                 <h5>${listingPractice.name}</h5>
                                 <p>${ newPatients }</p>
-                                <p>${listingPractice.visit_address.street}, ${listingPractice.visit_address.street2}</p>
+                                <p>${listingPractice.visit_address.street}</p>
                                 <p>${listingPractice.visit_address.city}, ${listingPractice.visit_address.state} ${listingPractice.visit_address.zip}</p>
                                 <p>${listingPhone.number}(${listingPhone.type})</p>
                             </div>
@@ -71,24 +71,40 @@ function parseResponse(json) {
   }
 }
 
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+function pageReset() {
+  clearMarkers();
+  $("#results").empty();
+}
+
 $(function() {
   let newCall;
 
   initMap();
   $("form").submit(function(event){
     event.preventDefault();
+    pageReset();
     newCall = new MediCall();
     let searchLimit = parseInt($("#search-limit").val());
     let queryVal = newCall.cleanUserInput($("#search-value").val());
 
     if ($("#search-type").val() === "keyword") {
-      let keywordPromise = newCall.keywordCall(queryVal);
+      let keywordPromise = newCall.keywordCall(queryVal, searchLimit);
 
       keywordPromise.then(function(response){
         parseResponse(response);
       });
     } else {
-      let namePromise = newCall.keywordCall(queryVal);
+      let namePromise = newCall.nameCall(queryVal, searchLimit);
 
       namePromise.then(function(response){
         parseResponse(response);
