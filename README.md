@@ -12,19 +12,21 @@ A website where users may enter a medical issue (_i.e._, “sore throat”, "ras
 
 Behavior | Input | Output
 --- | --- | ---
-Receive medical issue and return information about relevant doctors in Portland | "asthma" | Dr. David Jones, MD<br>Pulmonology<span style="float: right">_Accepting_</span><br>123 SW Medical Ave<br>Portland, OR 97212<br>(503)555-1234<br>[Jones Throat & Lung](#)
-Receive a name and return a list of possible matching doctors in Portland | "Jones" | <ul><li>David Jones, MD</li><br><li>Sandra Jones, MD</li></ul>
+Receive keyword and return highest-rated doctors in Portland with matches in their profiles | "asthma" | Dr. David Jones, MD<br>Pulmonology<span style="float: right">_Accepting_</span><br>123 SW Medical Ave<br>Portland, OR 97212<br>(503)555-1234<br>[Jones Throat & Lung](#)
+Receive a last name and return highest-rated doctors in Portland with matching last names | "Jones" | <ul><li>David Jones, MD</li><br><li>Sandra Jones, MD</li></ul>
 Return a message if query response is empty | "Jonz" | "Sorry, your search was successful for the following reason: _Incorrect parameters (input data)_."
-Return a message if API call is rejected | "Jones" | "Sorry, there are no doctors meeting that description."
+Return a message if API call is rejected | "Barreyro" | "Sorry, there are no doctors meeting that description."
+Map locations of practices associated with doctors in search results | "Jones" | [map markers]
 
 
 ## Setup/Installation Requirements
 
 * Visit the [BetterDoctor API](https://developer.betterdoctor.com/) site and apply for a free API key.
+* Visit the [Google Maps API](https://developers.google.com/maps/documentation/javascript/) site and apply for a free JavaScript API key.
 * [View/clone directory](https://github.com/pabarreyro/super-galactic);
 * Download/install technologies locally (_see below_);
 * In command line: run "npm install" in cloned repo root directory.
-* Place your API key in a _.env_ file in your root directory.
+* Place your API keys in a _.env_ file in your root directory.
 
 ## Known Bugs
 
