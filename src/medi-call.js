@@ -11,7 +11,7 @@ class MediCall {
         } else {
           reject(Error(request.statusText));
         }
-      }
+      };
 
       request.open('GET', url, true);
       request.send();
@@ -30,7 +30,7 @@ class MediCall {
         } else {
           reject(Error(request.statusText));
         }
-      }
+      };
 
       request.open('GET', url, true);
       request.send();
