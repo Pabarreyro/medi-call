@@ -34,7 +34,7 @@ function parseResponse(json) {
     $("#results").append(`<div class="card card-body" id="no-results"><h2>Sorry, there are no doctors meeting that description. Try another keyword.</h2></div>`);
   } else {
     for (let i = 0; i < json.data.length; i++) {
-      let resultId = (i + 1).toString();
+      let listingId = (i + 1).toString();
       let listing = json.data[i];
       let listingSpecialty = listing.specialties[0];
       let listingPractice = listing.practices[0];
@@ -49,7 +49,7 @@ function parseResponse(json) {
 
       let listingLat = listingPractice.visit_address.lat;
       let listingLong = listingPractice.visit_address.lon;
-      plotMarker(listingLat,listingLong, resultId);
+      plotMarker(listingLat,listingLong, listingId);
 
       $("#results").append(`<div class="card card-body">
                             <div class="row">
@@ -57,7 +57,7 @@ function parseResponse(json) {
                             <img src="${ listing.profile.image_url }">
                             </div>
                             <div class="col-md-4">
-                            <h4>${ resultId }. ${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}
+                            <h4>${ listingId }. ${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}
                             </h4>
                             <p>${listingSpecialty.name}</p>
                             </div>
