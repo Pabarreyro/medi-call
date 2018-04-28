@@ -69,7 +69,7 @@ function parseResponse(json) {
                             <p>${listingPhone.number} (${listingPhone.type})</p>
                             </div>
                             </div>`
-                          );
+      );
     }
   }
 }
@@ -91,8 +91,8 @@ function pageReset() {
 
 $(function() {
   let newCall;
-
   initMap();
+
   $("form").submit(function(event){
     event.preventDefault();
     pageReset();
@@ -106,16 +106,16 @@ $(function() {
       keywordPromise.then(function(response){
         parseResponse(response);
       }, function(error) {
-      $("#results").text(`Sorry, your search was unsuccessful for the following reason: ${error.message}`);
-    });
+        $("#results").text(`Sorry, your search was unsuccessful for the following reason: ${error.message}`);
+      });
     } else {
       let namePromise = newCall.nameCall(queryVal, searchLimit);
 
       namePromise.then(function(response){
         parseResponse(response);
       }, function(error) {
-      $("#results").text(`Sorry, your search was unsuccessful for the following reason: ${error.message}`);
-    });
+        $("#results").text(`Sorry, your search was unsuccessful for the following reason: ${error.message}`);
+      });
     }
   });
 });
