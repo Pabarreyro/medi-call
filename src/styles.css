@@ -28,3 +28,19 @@ h1 {
 .card {
   margin-top: 10px
 }
+
+#no-results {
+  text-align: center;
+}
+
+h2 {
+  color: #4faaa4;
+}
+
+h5 {
+  color: #46464c;
+}
+
+p {
+  color: #939393;
+}
