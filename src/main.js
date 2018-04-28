@@ -30,44 +30,47 @@ function plotMarker(lat, long, id){
 }
 
 function parseResponse(json) {
-  console.log(json);
-  for (let i = 0; i < json.data.length; i++) {
-    let resultId = (i + 1).toString();
-    let listing = json.data[i];
-    let listingSpecialty = listing.specialties[0];
-    let listingPractice = listing.practices[0];
-    let listingPhone = listingPractice.phones[0];
+  if (json.data.length === 0) {
+    $("#results").append(`<div class="card card-body" id="no-results"><h2>Sorry, there are no doctors meeting that description. Try another keyword.</h2></div>`);
+  } else {
+    for (let i = 0; i < json.data.length; i++) {
+      let resultId = (i + 1).toString();
+      let listing = json.data[i];
+      let listingSpecialty = listing.specialties[0];
+      let listingPractice = listing.practices[0];
+      let listingPhone = listingPractice.phones[0];
 
-    let newPatients;
-    if (listingPractice.accepts_new_patients === true) {
-      newPatients = "Accepting new patients";
-    } else {
-      newPatients = "Not accepting new patients";
-    }
+      let newPatients;
+      if (listingPractice.accepts_new_patients === true) {
+        newPatients = "Accepting new patients";
+      } else {
+        newPatients = "Not accepting new patients";
+      }
 
-    let listingLat = listingPractice.visit_address.lat;
-    let listingLong = listingPractice.visit_address.lon;
-    plotMarker(listingLat,listingLong, resultId);
+      let listingLat = listingPractice.visit_address.lat;
+      let listingLong = listingPractice.visit_address.lon;
+      plotMarker(listingLat,listingLong, resultId);
 
-    $("#results").append(`<div class="card card-body">
+      $("#results").append(`<div class="card card-body">
                             <div class="row">
-                              <div class="col-md-2">
-                                <img src="${ listing.profile.image_url }">
-                              </div>
-                              <div class="col-md-3">
-                                <h4>${ resultId }. ${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}
-                                </h4>
-                                <p>${listingSpecialty.name}</p>
-                              </div>
-                              <div class="col-md-4">
-                                <h5>${listingPractice.name}</h5>
-                                <p>${ newPatients }</p>
-                                <p>${listingPractice.visit_address.street}</p>
-                                <p>${listingPractice.visit_address.city}, ${listingPractice.visit_address.state} ${listingPractice.visit_address.zip}</p>
-                                <p>${listingPhone.number}(${listingPhone.type})</p>
+                            <div class="col-md-2">
+                            <img src="${ listing.profile.image_url }">
                             </div>
-                          </div>`
-                        );
+                            <div class="col-md-4">
+                            <h4>${ resultId }. ${listing.profile.first_name} ${listing.profile.last_name}, ${listing.profile.title}
+                            </h4>
+                            <p>${listingSpecialty.name}</p>
+                            </div>
+                            <div class="col-md-3">
+                            <h5>${listingPractice.name}</h5>
+                            <p>${ newPatients }</p>
+                            <p>${listingPractice.visit_address.street}</p>
+                            <p>${listingPractice.visit_address.city}, ${listingPractice.visit_address.state} ${listingPractice.visit_address.zip}</p>
+                            <p>${listingPhone.number} (${listingPhone.type})</p>
+                            </div>
+                            </div>`
+                          );
+    }
   }
 }
 
@@ -102,13 +105,17 @@ $(function() {
 
       keywordPromise.then(function(response){
         parseResponse(response);
-      });
+      }, function(error) {
+      $("#results").text(`Sorry, your search was unsuccessful for the following reason: ${error.message}`);
+    });
     } else {
       let namePromise = newCall.nameCall(queryVal, searchLimit);
 
       namePromise.then(function(response){
         parseResponse(response);
-      });
+      }, function(error) {
+      $("#results").text(`Sorry, your search was unsuccessful for the following reason: ${error.message}`);
+    });
     }
   });
 });
