@@ -7,6 +7,7 @@ class Listing {
     this.title = responseObj.profile.title;
     this.specialty = responseObj.specialties[0].name;
     this.practice = responseObj.practices[0].name;
+    this.newPatients;
     this.address = [responseObj.practices[0].visit_address.street,
                     responseObj.practices[0].visit_address.city, responseObj.practices[0].visit_address.state, responseObj.practices[0].visit_address.zip,];
     this.phone = [responseObj.practices[0].phones[0].number,
@@ -14,6 +15,15 @@ class Listing {
     this.location = [responseObj.practices[0].lat,
                     responseObj.practices[0].lon];
   }
+
+  setPatienStatus(responseObj){
+    if (responseObj.accepts_new_patients === true) {
+      this.newPatients = "Accepting new patients";
+    } else {
+      this.newPatients = "Not accepting new patients"
+    }
+  }
 }
+
 
 export { Listing };
