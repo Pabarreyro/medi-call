@@ -16,11 +16,11 @@ class Listing {
                     responseObj.practices[0].lon];
   }
 
-  setPatienStatus(responseObj){
+  setPatientStatus(responseObj){
     if (responseObj.accepts_new_patients === true) {
       this.newPatients = "Accepting new patients";
     } else {
-      this.newPatients = "Not accepting new patients"
+      this.newPatients = "Not accepting new patients";
     }
   }
 }

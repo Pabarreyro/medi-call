@@ -101,6 +101,7 @@ $(function() {
     pageReset();
     resultsMap = new Cartographer(map);
     newCall = new MediCall();
+
     let searchLimit = parseInt($("#search-limit").val());
     let queryVal = newCall.cleanUserInput($("#search-value").val());
 

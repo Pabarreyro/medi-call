@@ -7,7 +7,7 @@ class QueryResponse {
   }
 
   addListing(listing){
-    let listing = new Listing(listing)
+    let listing = new Listing(listing);
     this.listings.push(listing);
   }
 }
