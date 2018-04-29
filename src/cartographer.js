@@ -1,5 +1,4 @@
 class Cartographer {
-
   constructor(map) {
     this.map = map;
   }
