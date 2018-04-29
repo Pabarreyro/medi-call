@@ -11,6 +11,8 @@ class Listing {
                     responseObj.practices[0].visit_address.city, responseObj.practices[0].visit_address.state, responseObj.practices[0].visit_address.zip,];
     this.phone = [responseObj.practices[0].phones[0].number,
                   responseObj.practices[0].phones[0].type ];
+    this.location = [responseObj.practices[0].lat,
+                    responseObj.practices[0].lon];
   }
 }
 
