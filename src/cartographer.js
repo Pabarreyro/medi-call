@@ -12,6 +12,7 @@ class Cartographer {
       label: id
     });
 
-  
   }
 }
+
+export { Cartographer };
