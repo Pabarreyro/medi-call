@@ -14,8 +14,8 @@ Behavior | Input | Output
 --- | --- | ---
 Receive keyword and return highest-rated doctors in Portland with matches in their profiles | "asthma" | Dr. David Jones, MD<br>Pulmonology<span style="float: right">_Accepting_</span><br>123 SW Medical Ave<br>Portland, OR 97212<br>(503)555-1234<br>[Jones Throat & Lung](#)
 Receive a last name and return highest-rated doctors in Portland with matching last names | "Jones" | <ul><li>David Jones, MD</li><br><li>Sandra Jones, MD</li></ul>
-Return a message if query response is empty | "Jonz" | "Sorry, your search was successful for the following reason: _Incorrect parameters (input data)_."
-Return a message if API call is rejected | "Barreyro" | "Sorry, there are no doctors meeting that description."
+Return a message if query response is empty | "Jonz" | "Sorry, there are no doctors meeting that description."
+Return a message if API call is rejected | "Barreyro" | "Sorry, your search was successful for the following reason: _Incorrect parameters (input data)_."
 Map locations of practices associated with doctors in search results | "Jones" | [map markers]
 
 
