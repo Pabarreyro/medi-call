@@ -1,6 +1,6 @@
 import { Listing } from './listing.js';
 
-class QueryResponse {
+class MediCallback {
   constructor(json) {
     this.count = json.data.length;
     this.listings = [];
