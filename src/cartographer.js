@@ -1,6 +1,7 @@
 class Cartographer {
   constructor(map) {
     this.map = map;
+    this.markers = [];
   }
 
   plotMarker(lat, long, id) {
