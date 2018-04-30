@@ -36,6 +36,7 @@ function parseResponse(json) {
   if (json.data.length === 0) {
     $("#results").append(`<div class="card card-body" id="no-results"><h2>Sorry, there are no doctors meeting that description. Try another keyword.</h2></div>`);
   } else {
+    console.log(json);
     for (let i = 0; i < json.data.length; i++) {
       let listingId = (i + 1).toString();
       let listing = json.data[i];
