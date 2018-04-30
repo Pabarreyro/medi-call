@@ -46,7 +46,12 @@ function parseResponse(json) {
       } else {
         newPatients = "Not accepting new patients";
       }
-
+      let practiceName;
+      if (listingPractice.website !== undefined) {
+        practiceName = `<a href="${listingPractice.website}">${listingPractice.name}</a>`;
+      } else {
+        practiceName = listingPractice.name;
+      }
       let listingLat = listingPractice.visit_address.lat;
       let listingLong = listingPractice.visit_address.lon;
       plotMarker(listingLat,listingLong, listingId);
@@ -62,7 +67,7 @@ function parseResponse(json) {
                             <p>${listingSpecialty.name}</p>
                             </div>
                             <div class="col-md-3">
-                            <h5>${listingPractice.name}</h5>
+                            <h5>${practiceName}</h5>
                             <p>${ newPatients }</p>
                             <p>${listingPractice.visit_address.street}</p>
                             <p>${listingPractice.visit_address.city}, ${listingPractice.visit_address.state} ${listingPractice.visit_address.zip}</p>
